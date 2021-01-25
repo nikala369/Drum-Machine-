@@ -1,0 +1,18 @@
+.main-puds {
+ display: grid;
+ grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 80px 80px 80px; 
+  column-gap: 10px;
+  row-gap: 15px;
+
+}
+.pad {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: ivory;
+ cursor: pointer;
+ margin-right: 10px;
+ border-radius: 5px;
+ 
+}
