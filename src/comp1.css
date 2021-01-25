@@ -10,9 +10,17 @@
  display: flex;
  justify-content: center;
  align-items: center;
- background-color: ivory;
  cursor: pointer;
  margin-right: 10px;
  border-radius: 5px;
  
+}
+.drum-pud1, .drum-pud2, .drum-pud3 {
+ background: radial-gradient(#ffffff, #ffee00);
+}
+.drum-pud4, .drum-pud5, .drum-pud6 {
+ background: radial-gradient(#ffffff, #ae00ff);
+}
+.drum-pud7, .drum-pud8, .drum-pud9 {
+ background: radial-gradient(#ffffff, #00ff9d);
 }
