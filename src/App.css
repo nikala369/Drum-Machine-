@@ -8,13 +8,28 @@
   padding: 47.5px;
 }
 body{
-  background-color: rgb(35, 31, 34);
   width: 100%;
   min-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
   font-family: Russo One;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  animation: pulse 2.7s forwards;
 }
+@keyframes pulse {
+  0% {
+  background: radial-gradient(#ffffff, #41403c);
+  }
+  100% {
+  background-color: rgb(35, 31, 34);
+  }
+}
+
 .main-container {
   display: flex;
   justify-content: space-around;
@@ -36,6 +51,18 @@ body{
   
 }
 
+@keyframes logo-rotate {
+  30% {
+    transform: rotate(20deg);
+  }
+  60% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 @keyframes logo-spin {
   from {
     left: -1300px;
@@ -46,6 +73,38 @@ body{
     transform: rotate(1440deg);
   }
 }
+
+
+/*Style pads*/
+.main-puds {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 80px 80px 80px; 
+  column-gap: 12.5px;
+  row-gap: 12.5px;
+  padding: 20px;
+
+}
+.pad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 0px;
+  border-radius: 5px;
+  
+}
+.drum-pud1 {
+  background: radial-gradient(#ffffff, #f3e308);
+  animation: fadeInTopLeft;
+  animation-duration: 2.4s;
+
+}
+.drum-pud1:active {
+  background: radial-gradient(#cfc296, #ffe602);
+  outline: none;
+}
+
 
 @media only screen and (max-width: 600px) {
   .main-container {

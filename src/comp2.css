@@ -1,0 +1,13 @@
+.right-side {
+  padding: 50px;
+}
+.empty-div {
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  background: radial-gradient(#ffffff, #e4e4e4);
+}
+.input-style-range {
+  width: 200px;
+  padding: 20px;
+}

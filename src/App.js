@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 import machinelogo from './images/machinlogo.jpg';
-import Component1 from './component1';
+import Component2 from './component2';
+
 
 const projectName = "DRUMER";
+
 
 // First voice Data
 const bankOne = [
@@ -123,19 +125,50 @@ const bankTwo = [
 
 
 function App() {
+
   return (
     <div className="App">
       <img className="img1" src={machinelogo} alt="Drum Machine Logo"/>
 
       <div className="main-container">
         <Component1 />
-        <div>
-          <input />
-        </div>
+        <Component2 />
 
       </div>
     </div>
   );
 }
+
+
+function Component1() { 
+
+  return(
+    <div className="main-puds">
+      {bankOne.map(clip => (
+        <Pad  key={clip.id} clip={clip}/>
+      ))}
+
+    </div>
+  );
+}
+
+
+
+function Pad( {clip} ) {
+const playSound = () => {
+  const audioTag = document.getElementById(clip.keyTrigger);
+  audioTag.currentTime = 0;
+  audioTag.play();
+}
+
+  return (
+    <div onClick={playSound} className="pad drum-pud1">
+      <audio className="clip" id={clip.keyTrigger} src={clip.url}/>
+      {clip.keyTrigger}
+    </div>
+  );
+}
+
+
 
 export default App;
