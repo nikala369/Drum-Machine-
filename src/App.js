@@ -1,8 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import machinelogo from './images/machinlogo.jpg';
-import Component2 from './component2';
-
 
 const projectName = "DRUMER";
 
@@ -64,101 +62,121 @@ const bankOne = [
     url: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3'
   }
 ];
-// Second Voice data
-const bankTwo = [
-  {
-    keyCode: 81,
-    keyTrigger: 'Q',
-    id: 'Chord-1',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3'
-  },
-  {
-    keyCode: 87,
-    keyTrigger: 'W',
-    id: 'Chord-2',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3'
-  },
-  {
-    keyCode: 69,
-    keyTrigger: 'E',
-    id: 'Chord-3',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3'
-  },
-  {
-    keyCode: 65,
-    keyTrigger: 'A',
-    id: 'Shaker',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3'
-  },
-  {
-    keyCode: 83,
-    keyTrigger: 'S',
-    id: 'Open-HH',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3'
-  },
-  {
-    keyCode: 68,
-    keyTrigger: 'D',
-    id: 'Closed-HH',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3'
-  },
-  {
-    keyCode: 90,
-    keyTrigger: 'Z',
-    id: 'Punchy-Kick',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3'
-  },
-  {
-    keyCode: 88,
-    keyTrigger: 'X',
-    id: 'Side-Stick',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3'
-  },
-  {
-    keyCode: 67,
-    keyTrigger: 'C',
-    id: 'Snare',
-    url: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'
-  }
-];
-
 
 
 function App() {
+  const [volume, setVolume] = React.useState(1);
+  const [isClicked, setIsClicked] = React.useState(false);
+  const [on, setOn] = React.useState('On');
+
+    function clicking() {
+      setIsClicked(!isClicked);
+      if(!isClicked){
+        setOn('Off');
+      } else {
+        setOn('On');
+      }
+
+    }
+    
+    
+
+    const pudsOff = isClicked
+    ? {
+      position: 'absolute',
+      left: '-1500px',
+      top: '247.5px',
+      transition: '4s ease'
+      
+    } 
+    : {
+      left: '330px',
+
+
+    }
+
+
+    const powerSlider = !isClicked
+      ? {
+          justifyContent: 'flex-start',
+          transition: '0.8s ease'
+
+        }
+      : {
+          justifyContent: 'flex-end',
+          backgroundColor: 'rgb(140, 130, 168)',
+          transition: '0.8 ease'
+        };
+        const littleCircle = isClicked 
+        ? {
+          backgroundColor: 'white'
+        }
+        : {
+        
+        };
+  
 
   return (
     <div className="App">
       <img className="img1" src={machinelogo} alt="Drum Machine Logo"/>
 
       <div className="main-container">
-        <Component1 />
-        <Component2 />
+          
+        <div className="main-puds" style={pudsOff}>
+      {bankOne.map(clip => (
+        <Pad  key={clip.id} clip={clip}
+        volume={volume}/>
+      ))};
+    </div>
+
+        <div className="right-side">
+      <h3 style={{color: 'white', padding: '10px', letterSpacing: '2px'}}>Volume</h3>
+      <input 
+      className="input-style-range" type="range" 
+      name="volume"
+      id="volume"
+      step="0.01"
+      value={volume}
+      min="0" 
+      max="1"
+      onChange={(e) => setVolume(e.target.value)} />
+
+      <h3 style={{color: 'white', padding: '10px', marginTop: '15px', letterSpacing: '1px'}} >Power <span className="spanWord">{on}</span></h3>
+      <div onClick={clicking} className="power-off" style={powerSlider}>
+        <button className="offVolume" style={littleCircle}></button>
+      </div>
+
+    </div>
 
       </div>
     </div>
   );
 }
+    
+  
 
+function Pad( {clip, volume} ) {
 
-function Component1() { 
+  React.useEffect( () => {
+    document.addEventListener('keydown', handleKeyPress); 
+    return() => {
+    document.removeEventListener('keydown', handleKeyPress);  
 
-  return(
-    <div className="main-puds">
-      {bankOne.map(clip => (
-        <Pad  key={clip.id} clip={clip}/>
-      ))}
+    } 
+  }, [])
 
-    </div>
-  );
-}
+  const handleKeyPress = (e) => {
+    if(e.keyCode === clip.keyCode) {
+      playSound();
+    }
+  }
 
-
-
-function Pad( {clip} ) {
 const playSound = () => {
   const audioTag = document.getElementById(clip.keyTrigger);
+  audioTag.volume = volume;
   audioTag.currentTime = 0;
   audioTag.play();
+  
 }
 
   return (

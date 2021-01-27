@@ -23,7 +23,7 @@ body{
 }
 @keyframes pulse {
   0% {
-  background: radial-gradient(#ffffff, #41403c);
+  background: radial-gradient(#ffffff, #4e5250);
   }
   100% {
   background-color: rgb(35, 31, 34);
@@ -41,7 +41,6 @@ body{
   margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgb(35, 31, 34);
   border-radius: 5px;
 }
 .img1 {
@@ -103,11 +102,102 @@ body{
 .drum-pud1:active {
   background: radial-gradient(#cfc296, #ffe602);
   outline: none;
+  margin-top: 3px;
 }
+
+
+/*Component 2 Css*/
+.right-side {
+  padding: 50px;
+}
+.empty-div {
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  background: radial-gradient(#ffffff, #e4e4e4);
+}
+/*type=range design*/
+input[type="range"]{
+    min-width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    height: .35em;
+    background: rgb(218, 221, 207);
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 1.1em;
+    width: 1.1em;
+    border-radius: 50%;
+    background: rgb(122, 117, 145);
+    margin-top: -4px;
+    cursor: pointer;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+.power-off {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 60px;
+  align-items: center;
+  background-color: white;
+  width: 50px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.offVolume {
+  background-color: rgb(122, 117, 145);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  border:none;
+}
+.offVolume:focus {
+  outline: none;
+
+}
+.spanWord {
+  font-size: 22px;
+  color: rgb(208, 200, 245);
+}
+/* .little-off:focus {
+  outline: none;
+  animation: movingToggle 1s forwards;
+}
+@keyframes movingToggle {
+  from {
+    margin-left: 0px;
+  }
+  to {
+    margin-left: 25px;
+  }
+} */
+
+
+
 
 
 @media only screen and (max-width: 600px) {
   .main-container {
     flex-direction: column;
+  }
+  .right-side {
+    margin-top: -55px;
   }
 }
